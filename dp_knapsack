@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+#define fr0(i, n) for(int i=0; i<n; i++)
+
+using namespace std;
+int N;
+int K;
+int dp_array[2005];
+
+int knapsack(int *arr, int k, int x){
+    int out,out1;
+    out=INT_MIN;out1=INT_MIN;
+
+    if(k<0) return 0;
+    else if(k ==0) return x;
+        else if(dp_array[k]!=0) 
+            return dp_array[k]+x;
+        else{        
+        fr0(j,N){            
+            out=knapsack(arr, k-arr[j],arr[j]);          
+            out1=out>out1?out:out1; 
+        }
+        dp_array[k]=out1;
+        return out1+x;
+    }
+}
+
+
+int main() {
+    int t;  
+    int out=INT_MIN,out1=INT_MIN;
+    int *arr;
+    cin>>t;
+    
+    while(t--){          
+        cin>>N>>K;        
+        arr=new int[N];
+        fr0(i,N) cin>>arr[i];       
+        memset(dp_array, 0, sizeof(dp_array));    
+        cout<<knapsack(arr,K, 0);
+        cout<<endl;     
+       delete [] arr;
+    }    
+    return 0;
+}
