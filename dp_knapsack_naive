@@ -1,0 +1,55 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <climits>
+#define fr0(i, n) for(int i=0; i<n; i++)
+
+using namespace std;
+
+int N;
+int K;
+int knapsack(int *arr, int k, int i){
+    int out,out1;
+    out=INT_MIN;out1=INT_MIN;
+    if((k-i)<0) return K-k;
+    else if((k-i)==0) return K;
+        else{
+        fr0(j,N){
+            out=knapsack(arr, k-i, arr[j]);
+            out1=out>out1?out:out1;
+           // cout<<out1<<" ";
+        }
+        return out1;
+    }
+}
+
+
+int main() {
+    int t;  
+    int out=INT_MIN,out1=INT_MIN;
+    int *arr;
+    cin>>t;
+    
+    while(t--){          
+        cin>>N>>K;        
+        arr=new int[N];
+        fr0(i,N) cin>>arr[i];
+       // fr0(i,N) cout<<arr[i]<<" ";
+       // cout<<endl;
+       // cout<<N;
+        fr0(i,N){
+          out=knapsack(arr,K, arr[i]);            
+          out1=out>out1? out:out1;
+         //  cout<<out1<<" ";
+        } 
+       cout<<out1<<endl;
+       out=0;
+       out1=0;  
+     
+       delete [] arr;
+    }
+    
+    return 0;
+}
