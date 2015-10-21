@@ -10,6 +10,44 @@
 #include<stack>
 #include<set>
 
+//Easy graph Implementation 
+/*************************************
+ #include<bits/stdc++.h>
+#define fr1(i, n) for(int i=1; i<=n; i++)
+using namespace std;
+vector <int > edges[1005];
+bool visited[1005];
+int n, m;
+int cnt=0;
+int dfs(int v){
+    if(visited[v]==true) return 0;
+    int nodes=0,x;
+    visited[v]=true;
+    auto it=edges[v].begin();
+    for(;it!=edges[v].end(); it++){
+        x=dfs(*it);
+        if(x%2==0 && x!=0) {
+            cnt++;
+        }
+        else nodes+=x;
+    }
+    return nodes+1;    
+}
+int main() {
+    int u , v;
+    int in;
+    cin>>n>>m;   
+    memset(visited, false, sizeof(visited));
+    fr1(i, m){
+        cin>>u>>v;
+        edges[u].push_back(v);
+        edges[v].push_back(u);
+    }    
+    dfs(1);
+    cout<<cnt;
+    return 0;
+}
+***********************************************/
 
 using namespace std;
 class graph{
